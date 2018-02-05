@@ -6,16 +6,16 @@ all:        help
 install:    install-backend install-controller
 ## Delete Everything
 delete:     delete-backend delete-controller
-
+## Output plaintext yaml's
+dump:       _dump-default-backend-deployment _dump-default-backend-service _dump-controller-service _dump-controller-deployment
 ## Install default-http-backend (Deployment & Service)
-install-backend:    _apply-default-backend-deployment _apply-default-backend-service
+install-backend:        _apply-default-backend-deployment _apply-default-backend-service
 ## Install default-http-backend (Deployment & Service)
-delete-backend:    _delete-default-backend-deployment _delete-default-backend-service
-
+delete-backend:         _delete-default-backend-deployment _delete-default-backend-service
 ## Install nginx ingress controller (Deployment & Service
-install-controller:         _apply-controller-service _apply-controller-deployment
+install-controller:      _apply-controller-service _apply-controller-deployment
 ## Delete nginx ingress controller (Deployment & Service)
-delete-controller:          _delete-controller-deployment _delete-controller-service
+delete-controller:      _delete-controller-deployment _delete-controller-service
 
 _apply-%:
 
