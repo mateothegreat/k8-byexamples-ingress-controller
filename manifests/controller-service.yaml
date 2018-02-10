@@ -11,7 +11,6 @@ spec:
 
   type: LoadBalancer
   loadBalancerIP: 35.224.39.104
-#   loadBalancerIP: 107.178.246.164
   ports:
 
   - port:       80
