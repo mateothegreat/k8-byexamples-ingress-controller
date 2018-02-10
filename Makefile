@@ -1,5 +1,6 @@
 # include $(MAKE_INCLUDE)/Makefile.inc
-NS  ?= infra-ingress
+NS          ?= infra-ingress
+
 
 all:        help
 ## Install Everything (Default Backend + Ingress Controller)
@@ -16,6 +17,8 @@ delete-backend:         _delete-default-backend-deployment _delete-default-backe
 install-controller:      _apply-controller-service _apply-controller-deployment
 ## Delete nginx ingress controller (Deployment & Service)
 delete-controller:      _delete-controller-deployment _delete-controller-service
+
+# install-dns: _apply-externaldns
 
 _apply-%:
 

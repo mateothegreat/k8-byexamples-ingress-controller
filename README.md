@@ -62,6 +62,19 @@ $ make delete NS=infra-ingress
     service "ingress-svc" deleted
 ```
 
+## TLS
+
+Now you can use the secret an ingress spec.
+Adding this to your ingress is all you have to do:
+
+```yaml
+spec:
+  tls:
+  - hosts:
+    - foo.bar.com
+    secretName: tls-foo.bar.com
+```
+
 ## Dump the yamls!
 
 ```sh
@@ -192,3 +205,7 @@ spec:
         - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
         - --publish-service=$(POD_NAMESPACE)/ingress-svc
 ```
+
+## See also
+
+* https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/annotations.md
