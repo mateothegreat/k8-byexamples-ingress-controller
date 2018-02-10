@@ -11,7 +11,6 @@ NS      ?= default
 APP     ?= ingress-controller
 export
 
-new:
-
-	@envsubst < templates/ingress.yaml | kubectl -n $$NS apply -f -
-	@envsubst < templates/certificate.yaml | kubectl -n $$NS apply -f -
+new:                new-ingress new-certificate
+new-ingress:        ; @envsubst < templates/ingress.yaml | kubectl -n $$NS apply -f -
+new-certificate:    ; @envsubst < templates/certificate.yaml | kubectl -n $$NS apply -f -
