@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: $HOST
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    # # nginx.ingress.kubernetes.io/secure-backends: "true"
+    # nginx.ingress.kubernetes.io/rewrite-target: "/"
+    kubernetes.io/ingress.global-static-ip-name: "kubernetes-ingress"
+    # ingress.kubernetes.io/auth-type: basic
+    # ingress.kubernetes.io/auth-secret: basic-auth
+    # ingress.kubernetes.io/auth-realm: "Authentication Required"
+    # nginx.ingress.kubernetes.io/server-alias: "ingress.gcp.streaming-platform.com"
+spec:
+  tls:
+  - hosts:
+    - $HOST
+    secretName: tls-$HOST
+  rules:
+  - host: $HOST
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: $SERVICE_NAME
+          servicePort: $SERVICE_PORT
