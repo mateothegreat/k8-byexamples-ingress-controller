@@ -76,6 +76,7 @@ rules:
       - namespaces
     verbs:
       - get
+
   - apiGroups:
       - ""
     resources:
@@ -89,12 +90,15 @@ rules:
     verbs:
       - get
       - update
+
   - apiGroups:
       - ""
     resources:
       - configmaps
+      - endpoints
     verbs:
       - create
+
   - apiGroups:
       - ""
     resources:
@@ -132,4 +136,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: default
-    namespace: infra-ingress
+    namespace: $NS

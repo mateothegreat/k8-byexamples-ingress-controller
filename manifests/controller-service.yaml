@@ -10,6 +10,7 @@ metadata:
 spec:
 
   type: LoadBalancer
+  loadBalancerIP: 35.224.39.104
   ports:
 
   - port:       80
