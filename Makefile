@@ -7,10 +7,13 @@
 #
 include .make/Makefile.inc
 
-NS      ?= default
-APP     ?= ingress-controller
+NS      		?= default
+APP     		?= ingress-controller
+LOADBALANCER_IP	?=
 export
 
 new:                new-ingress new-certificate
 new-ingress:        ; @envsubst < templates/ingress.yaml | kubectl -n $$NS apply -f -
 new-certificate:    ; @envsubst < templates/certificate.yaml | kubectl -n $$NS apply -f -
+
+install:			guard-LOADBALANCER_IP

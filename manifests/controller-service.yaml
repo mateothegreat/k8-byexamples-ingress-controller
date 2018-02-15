@@ -10,7 +10,7 @@ metadata:
 spec:
 
   type: LoadBalancer
-  loadBalancerIP: 35.224.39.104
+  loadBalancerIP: $LOADBALANCER_IP
   ports:
 
   - port:       80
@@ -20,6 +20,10 @@ spec:
   - port:       443
     targetPort: 443
     name:       https
+
+  - port:       1194
+    targetPort: 1194
+    name:       openvpn
 
   selector:
     k8s-app: ingress-controller
