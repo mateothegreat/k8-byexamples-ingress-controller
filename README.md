@@ -24,42 +24,49 @@ You must disable the ingress controller when you're creating GKE clusters.
 ## Usage
 
 ```sh
-Usage:
+$ make help
 
-  make <target>
+                                __                 __
+   __  ______  ____ ___  ____ _/ /____  ____  ____/ /
+  / / / / __ \/ __  __ \/ __  / __/ _ \/ __ \/ __  /
+ / /_/ / /_/ / / / / / / /_/ / /_/  __/ /_/ / /_/ /
+ \__, /\____/_/ /_/ /_/\__,_/\__/\___/\____/\__,_/
+/____
+                        yomateo.io, it ain't easy.
+
+Usage: make <target(s)>
 
 Targets:
 
-  install              Install Everything (Default Backend + Ingress Controller)
-  delete               Delete Everything
-  dump                 Output plaintext yamls
-
-  install-backend      Install default-http-backend (Deployment & Service)
-  delete-backend       Install default-http-backend (Deployment & Service)
-  install-controller   Install nginx ingress controller (Deployment & Service
-  delete-controller    Delete nginx ingress controller (Deployment & Service)
-  logs                 Find first pod and follow log output
+  git/update           Update submodule(s) to HEAD from origin
+  install              Installs manifests to kubernetes using kubectl apply (make manifests to see what will be installed)
+  delete               Deletes manifests to kubernetes using kubectl delete (make manifests to see what will be installed)
+  get                  Retrieves manifests to kubernetes using kubectl get (make manifests to see what will be installed)
+  describe             Describes manifests to kubernetes using kubectl describe (make manifests to see what will be installed)
+  context              Globally set the current-context (default namespace)
+  shell                Grab a shell in a running container
+  dump/logs            Find first pod and follow log output
+  dump/manifests       Output manifests detected (used with make install, delete, get, describe, etc)
 ```
 
-## Example
+## Install
 
 Installs everything you need, next setup an ingress!
 See https://github.com/mateothegreat/k8-byexamples-echoserver
 
 ```sh
-$ make install NS=infra-ingress
+$ make install LOADBALANCER_IP=35.224.16.183 logs
 
-    deployment "default-http-backend" created
-    service "default-http-backend" created
-    service "ingress-svc" created
-    deployment "ingress-controller" created
-
-$ make delete NS=infra-ingress
-
-    deployment "default-http-backend" deleted
-    service "default-http-backend" deleted
-    deployment "ingress-controller" deleted
-    service "ingress-svc" deleted
+[ INSTALLING MANIFESTS/DEFAULTBACKEND-SERVICE.YAML ]: service "default-http-backend" created
+[ INSTALLING MANIFESTS/CONTROLLER-DEPLOYMENT.YAML ]: deployment "ingress-controller" created
+[ INSTALLING MANIFESTS/CONTROLLER-SERVICE.YAML ]: service "ingress-svc" created
+[ INSTALLING MANIFESTS/DEFAULTBACKEND-DEPLOYMENT.YAML ]: deployment "default-http-backend" created
+[ INSTALLING MANIFESTS/RBAC.YAML ]: serviceaccount "nginx-ingress-serviceaccount" created
+clusterrole "nginx-ingress-clusterrole" created
+role "nginx-ingress-role" created
+rolebinding "nginx-ingress-role-nisa-binding" created
+clusterrolebinding "nginx-ingress-clusterrole-nisa-binding" created
+[ INSTALLING MANIFESTS/CONFIGMAP.YAML ]: configmap "nginx-configuration" created
 ```
 
 ## Creating new ingress
@@ -87,6 +94,25 @@ Events:
   Type    Reason  Age   From                Message
   ----    ------  ----  ----                -------
   Normal  CREATE  27s   ingress-controller  Ingress default/gitlab.yomateo.io
+```
+
+## Cleanup
+
+```sh
+
+$ make delete
+
+[ DELETING MANIFESTS/DEFAULTBACKEND-SERVICE.YAML ]: service "default-http-backend" deleted
+[ DELETING MANIFESTS/CONTROLLER-DEPLOYMENT.YAML ]: deployment "ingress-controller" deleted
+[ DELETING MANIFESTS/CONTROLLER-SERVICE.YAML ]: service "ingress-svc" deleted
+[ DELETING MANIFESTS/DEFAULTBACKEND-DEPLOYMENT.YAML ]: deployment "default-http-backend" deleted
+[ DELETING MANIFESTS/RBAC.YAML ]: serviceaccount "nginx-ingress-serviceaccount" deleted
+clusterrole "nginx-ingress-clusterrole" deleted
+role "nginx-ingress-role" deleted
+rolebinding "nginx-ingress-role-nisa-binding" deleted
+clusterrolebinding "nginx-ingress-clusterrole-nisa-binding" deleted
+[ DELETING MANIFESTS/CONFIGMAP.YAML ]: configmap "nginx-configuration" deleted
+
 ```
 
 ## See also
