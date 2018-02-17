@@ -11,16 +11,20 @@ spec:
       labels:
         k8s-app: ingress-controller
         app: ingress-controller
+      annotations:
+        prometheus.io/scrape: "true"
+        promethus.io/port: "10254"        
     spec:
       # hostNetwork makes it possible to use ipv6 and to preserve the source IP correctly regardless of docker configuration
       # however, it is not a hard dependency of the nginx-ingress-monitoring itself and it may cause issues if port 10254 already is taken on the host
       # that said, since hostPort is broken on CNI (https://github.com/kubernetes/kubernetes/issues/31307) we have to use hostNetwork where CNI is used
       # like with kubeadm
       # hostNetwork: true
+      serviceAccountName: nginx-ingress-serviceaccount
       terminationGracePeriodSeconds: 60
       containers:
-      - image: gcr.io/google_containers/nginx-ingress-controller:0.9.0-beta.11
-        name: ingress-controller
+      - name: ingress-controller
+        image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.10.2
         readinessProbe:
           httpGet:
             path: /healthz
@@ -51,3 +55,7 @@ spec:
         - /nginx-ingress-controller
         - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
         - --publish-service=$(POD_NAMESPACE)/ingress-svc
+        - --configmap=$(POD_NAMESPACE)/nginx-configuration
+        - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+        - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
+        - --annotations-prefix=nginx.ingress.kubernetes.io

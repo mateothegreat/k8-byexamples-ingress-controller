@@ -1,8 +1,7 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: default
-#   name: nginx-ingress-serviceaccount
+  name: nginx-ingress-serviceaccount
   namespace: $NS
 
 ---
@@ -120,7 +119,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     # name: nginx-ingress-serviceaccount
-    name: default
+    name: nginx-ingress-serviceaccount
     namespace: $NS
 
 ---
@@ -135,5 +134,5 @@ roleRef:
   name: nginx-ingress-clusterrole
 subjects:
   - kind: ServiceAccount
-    name: default
+    name: nginx-ingress-serviceaccount
     namespace: $NS

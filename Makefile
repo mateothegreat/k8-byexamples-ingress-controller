@@ -9,7 +9,7 @@ include .make/Makefile.inc
 
 NS      		?= default
 APP     		?= ingress-controller
-LOADBALANCER_IP	?=
+LOADBALANCER_IP	?= 35.224.16.183 
 export
 
 new:                new-ingress new-certificate
