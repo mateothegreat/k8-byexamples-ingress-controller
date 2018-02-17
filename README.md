@@ -21,6 +21,11 @@ comes pre-installed with your cluster. The nginx class annotation is used to sup
 
 You must disable the ingress controller when you're creating GKE clusters.
 
+* Uses ConfigMap for nginx
+* Uses ConfigMap for both TCP & UDP settings
+* Tuned to allow large file uploads
+* CertManager ready!
+
 ## Usage
 
 ```sh
