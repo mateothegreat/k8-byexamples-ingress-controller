@@ -6,11 +6,17 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     # # nginx.ingress.kubernetes.io/secure-backends: "true"
     # nginx.ingress.kubernetes.io/rewrite-target: "/"
-    kubernetes.io/ingress.global-static-ip-name: "kubernetes-ingress"
+    # kubernetes.io/ingress.global-static-ip-name: "kubernetes-ingress"
     # ingress.kubernetes.io/auth-type: basic
     # ingress.kubernetes.io/auth-secret: basic-auth
     # ingress.kubernetes.io/auth-realm: "Authentication Required"
     # nginx.ingress.kubernetes.io/server-alias: "ingress.gcp.streaming-platform.com"
+    # type of authentication
+    nginx.ingress.kubernetes.io/auth-type: basic
+    # name of the secret that contains the user/password definitions
+    nginx.ingress.kubernetes.io/auth-secret: nginx-ingress-basic-auth
+    # message to display with an appropriate context why the authentication is required
+    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required - foo"    
 spec:
   tls:
   - hosts:

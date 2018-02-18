@@ -25,6 +25,7 @@ You must disable the ingress controller when you're creating GKE clusters.
 * Uses ConfigMap for both TCP & UDP settings
 * Tuned to allow large file uploads
 * CertManager ready!
+* Uses basic auth (username: user, password: pass) by default
 
 ## Usage
 
