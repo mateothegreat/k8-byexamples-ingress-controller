@@ -41,6 +41,8 @@ spec:
           hostPort: 80
         - containerPort: 443
           hostPort: 444
+        - containerPort: 1194
+          hostPort: 1194
         env:
           - name: POD_NAME
             valueFrom:
@@ -53,7 +55,7 @@ spec:
         args:
         - /nginx-ingress-controller
         - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
-        - --publish-service=$(POD_NAMESPACE)/ingress-svc
+        - --publish-service=$(POD_NAMESPACE)/ingress-controller
         - --configmap=$(POD_NAMESPACE)/nginx-configuration
         - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
         - --udp-services-configmap=$(POD_NAMESPACE)/udp-services

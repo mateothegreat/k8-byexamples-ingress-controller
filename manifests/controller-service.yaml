@@ -28,4 +28,4 @@ spec:
     name:       openvpn
 
   selector:
-    k8s-app: ingress-controller
+    app: ingress-controller
