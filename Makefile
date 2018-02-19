@@ -12,6 +12,7 @@ APP     		?= ingress-controller
 USERNAME        ?= user
 PASSWORD        ?= pass
 LOADBALANCER_IP	?= 35.224.16.183 
+SERVICE_TYPE	?= LoadBalancer
 export
 
 issue:              ingress-issue certificate-issue
