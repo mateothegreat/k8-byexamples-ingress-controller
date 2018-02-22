@@ -18,7 +18,7 @@ export
 issue:              ingress-issue certificate-issue
 revoke:				ingress-delete certificate-delete
 
-ingress-issue:      guard-HOST guard-SERVICE_NAME guard-SERVICE_PORT @envsubst < templates/ingress.yaml | kubectl -n $$NS apply -f -
+ingress-issue:      guard-HOST guard-SERVICE_NAME guard-SERVICE_PORT; @envsubst < templates/ingress.yaml | kubectl -n $$NS apply -f -
 ingress-htpasswd:   guard-HOST guard-SERVICE_NAME guard-SERVICE_PORT htpasswd; @envsubst < templates/ingress.yaml | kubectl -n $$NS apply -f -
 ingress-delete:		guard-HOST secret-delete; @envsubst < templates/ingress.yaml | kubectl -n $$NS delete --ignore-not-found -f -
 
