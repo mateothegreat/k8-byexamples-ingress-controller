@@ -11,7 +11,7 @@ NS      		?= default
 APP     		?= ingress-controller
 USERNAME        ?= user
 PASSWORD        ?= pass
-LOADBALANCER_IP	?= 35.224.16.183 
+LOADBALANCER_IP	?=  
 SERVICE_TYPE	?= LoadBalancer
 export
 
