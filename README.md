@@ -19,7 +19,7 @@ Setup the nginx ingress controller.
 For GKE users, you can use this controller instead of the default ingress controller that
 comes pre-installed with your cluster. The nginx class annotation is used to support this.
 
-You must disable the ingress controller when you're creating GKE clusters.
+_Note: You must disable the GKE ingress controller when you're creating GKE clusters (it's called "HTTP Load Balancer")._
 
 * Uses ConfigMap for nginx
 * Uses ConfigMap for both TCP & UDP settings
