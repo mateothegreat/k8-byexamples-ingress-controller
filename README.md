@@ -60,8 +60,10 @@ Targets:
 Installs everything you need, next setup an ingress!
 See https://github.com/mateothegreat/k8-byexamples-echoserver
 
+Reserve a static ip address ahead of time and pass it to the make install command below and it will be associated with the `ingress-svc` EXTERNAL_IP:
+
 ```sh
-$ make install LOADBALANCER_IP=35.224.16.183 logs
+$ make install LOADBALANCER_IP=35.224.16.183
 
 [ INSTALLING MANIFESTS/DEFAULTBACKEND-SERVICE.YAML ]: service "default-http-backend" created
 [ INSTALLING MANIFESTS/CONTROLLER-DEPLOYMENT.YAML ]: deployment "ingress-controller" created
@@ -76,6 +78,10 @@ clusterrolebinding "nginx-ingress-clusterrole-nisa-binding" created
 ```
 
 ## Creating new ingress
+
+Now that the `ingress-controller` is installed and ready to start routing requests we can go ahead and create an `Ingress` resource (not to confuse them to be the same thing):
+
+_You'll want to setup your dns to resolve the $HOST below to the LOADBALANCER_IP above:
 
 ```sh
 $ make new HOST=gitlab.yomateo.io SERVICE_NAME=gitlab SERVICE_PORT=80
