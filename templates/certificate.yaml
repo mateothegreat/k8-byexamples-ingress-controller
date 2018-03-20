@@ -4,19 +4,20 @@ metadata:
   name: asdf
   namespace: $NS
 spec:
-  secretName: tls-$DOMAIN
+  secretName: tls-$HOST
   issuerRef:
-    name: letsencrypt-staging
-  commonName: $DOMAIN
+    name: letsencrypt-staging-cluster-issuer
+    kind: ClusterIssuer
+  commonName: $HOST
   dnsNames:
-  - $DOMAIN
+  - $HOST
   acme:
     config:
     - http01:
         ingressClass: nginx
       domains:
-      - $DOMAIN
+      - $HOST
     - http01:
         ingress: ingress-svc
       domains:
-      - $DOMAIN
+      - $HOST
