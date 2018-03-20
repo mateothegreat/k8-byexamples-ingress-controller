@@ -1,22 +1,22 @@
 apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
 metadata:
-  name: $HOST
+  name: asdf
   namespace: $NS
 spec:
-  secretName: tls-$HOST
+  secretName: tls-$DOMAIN
   issuerRef:
     name: letsencrypt-staging
-  commonName: $HOST
+  commonName: $DOMAIN
   dnsNames:
-  - $HOST
+  - $DOMAIN
   acme:
     config:
     - http01:
         ingressClass: nginx
       domains:
-      - $HOST
+      - $DOMAIN
     - http01:
         ingress: ingress-svc
       domains:
-      - $HOST
+      - $DOMAIN
