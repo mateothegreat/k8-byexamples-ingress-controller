@@ -27,6 +27,15 @@ _Note: You must disable the GKE ingress controller when you're creating GKE clus
 * CertManager ready!
 * Uses basic auth (username: user, password: pass) by default
 
+# Getting started
+
+Clone this repo and initialize submodules:
+
+```bash
+git clone https://github.com/mateothegreat/k8-byexamples-ingress-controller && cd $_
+git submodule update --init
+```
+
 ## Usage
 
 ```sh
