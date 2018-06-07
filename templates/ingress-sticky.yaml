@@ -10,8 +10,7 @@ metadata:
     ingress.kubernetes.io/affinity: "cookie"
     ingress.kubernetes.io/session-cookie-name: "route"
     ingress.kubernetes.io/session-cookie-hash: "sha1"
-
-spec:  
+spec:
   rules:
   - host: $HOST
     http:

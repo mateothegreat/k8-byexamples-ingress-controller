@@ -5,4 +5,4 @@ metadata:
   labels:
     app: ingress-controller
 data:
-  1194: "default/openvpn:1194"
+#  1194: "default/openvpn:1194"

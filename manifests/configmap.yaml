@@ -28,14 +28,14 @@ data:
   # hsts: "True" # default is "False". Enables HTTP Strict Transport Security (HSTS): the HSTS header is added to the responses from backends. See https://www.nginx.com/blog/http-strict-transport-security-hsts-and-nginx/
   # hsts-max-age: "31536000" # default is 2592000 (1 month).
   # hsts-include-subdomains: "True" # default is "False".
-  # # ssl-protocols: "TLSv1.2" # default is "TLSv1 TLSv1.1 TLSv1.2". See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols
-  # # ssl-prefer-server-ciphers: "True" # default is "False". Enables or disables the ssl_prefer_server_ciphers directive. See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers
-  # # ssl-ciphers: "HIGH:!aNULL:!MD5" # default is "HIGH:!aNULL:!MD5". See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers
-  # # ssl-dhparam-file: |
-  # #   -----BEGIN DH PARAMETERS-----
-  # #   ...
-  # #   -----END DH PARAMETERS-----
-  # # Sets the content of the dhparam file. The controller will create the file and set the value of the ssl_dhparam directive with the path of the file. Also see http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam
+  # ssl-protocols: "TLSv1.2" # default is "TLSv1 TLSv1.1 TLSv1.2". See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols
+  # ssl-prefer-server-ciphers: "True" # default is "False". Enables or disables the ssl_prefer_server_ciphers directive. See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers
+  # ssl-ciphers: "HIGH:!aNULL:!MD5" # default is "HIGH:!aNULL:!MD5". See http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers
+  # ssl-dhparam-file: |
+  #   -----BEGIN DH PARAMETERS-----
+  #   ...
+  #   -----END DH PARAMETERS-----
+  # Sets the content of the dhparam file. The controller will create the file and set the value of the ssl_dhparam directive with the path of the file. Also see http://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_dhparam
   # set-real-ip-from: "192.168.192.168" # No default. Sets the value of the set_real_ip_from directive. See http://nginx.org/en/docs/http/ngx_http_realip_module.html#set_real_ip_from
   # real-ip-header: "proxy_protocol" # default is X-Real-IP. Sets the value of the real_ip_header directive. http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header
   # real-ip-recursive: "True" # default is "False". Enables or disables the real_ip_recursive directive. See http://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_recursive
@@ -62,7 +62,6 @@ data:
   # worker-cpu-affinity: "auto" # No default. Sets the value of the worker_cpu_affinity directive. See http://nginx.org/en/docs/ngx_core_module.html#worker_cpu_affinity
   # worker-shutdown-timeout: "5m" # No default. Sets the value of the worker_shutdown_timeout directive. See http://nginx.org/en/docs/ngx_core_module.html#worker_shutdown_timeout
   # keepalive: "32" # default is 0. When > 0, sets the value of the keepalive directive and adds 'proxy_set_header Connection "";' to a location block. See http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive
-
   # enable-opentracing:       "True"                      # Enables the nginx Opentracing extension. By default this is disabled.
   # zipkin-collector-host:    "zipkin-collector"          # Specifies the host to use when uploading traces. It must be a valid URL.
   # zipkin-collector-port:    "9410"                      # Specifies the port to use when uploading traces. Default: 9411
