@@ -14,7 +14,6 @@ spec:
   externalTrafficPolicy: Local
 
   ports:
-
   - port:       80
     targetPort: 80
     name:       http
@@ -23,9 +22,9 @@ spec:
     targetPort: 443
     name:       https
 
-  # - port:       1194
-  #   targetPort: 1194
-  #   name:       openvpn
+  - port:       1194
+    targetPort: 1194
+    name:       openvpn
 
   selector:
     app: ingress-controller
