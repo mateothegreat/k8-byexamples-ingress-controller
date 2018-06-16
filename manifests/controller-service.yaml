@@ -11,7 +11,7 @@ spec:
 
   type: $SERVICE_TYPE
   loadBalancerIP: $LOADBALANCER_IP
-  externalTrafficPolicy: Local
+  #externalTrafficPolicy: Local
 
   ports:
   - port:       80
