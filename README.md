@@ -150,6 +150,7 @@ clusterrolebinding "nginx-ingress-clusterrole-nisa-binding" deleted
 
 ## See also
 
+* https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap
 * https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/annotations.md
 * https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/configmap.md
 * https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/exposing-tcp-udp-services.md

@@ -1,5 +1,5 @@
 #
-# https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/configmap.md
+# https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap
 #
 kind: ConfigMap
 apiVersion: v1
@@ -12,8 +12,8 @@ data:
   # proxy-read-timeout: "10" # default is "60s". See http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout
   # proxy-hide-headers: "header-a,header-b" # No default. Sets the value of one or more proxy_hide_header directives. See http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header
   # proxy-pass-headers: "header-a,header-b" # No default. Sets the value of one or more proxy_pass_header directives. See http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header
-  body-size: "100m"
-  proxy-body-size: "129m"
+  body-size: "1024m"
+  proxy-body-size: "1024m"
   # client-max-body-size: "130m" # default is "1m". See http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
   # client-body-buffer-size: "140m" # default is "1m". See http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
   # server-names-hash-bucket-size: "64" # default value depends on the size of the processor’s cache line. See http://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_bucket_size
