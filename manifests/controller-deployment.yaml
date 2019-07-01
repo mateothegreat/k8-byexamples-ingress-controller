@@ -55,7 +55,7 @@ spec:
         args:
         - /nginx-ingress-controller
         - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
-        - --publish-service=$(POD_NAMESPACE)/ingress-controller
+        # - --publish-service=$(POD_NAMESPACE)/ingress-controller
         - --configmap=$(POD_NAMESPACE)/nginx-configuration
 #        - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
 #        - --udp-services-configmap=$(POD_NAMESPACE)/udp-services

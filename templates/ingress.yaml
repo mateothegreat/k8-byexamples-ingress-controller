@@ -4,6 +4,9 @@ metadata:
   name: $HOST
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    nginx.org/proxy-connect-timeout: "120s"
+    nginx.org/proxy-read-timeout: "120s"
+    nginx.org/client-max-body-size: "40m"    
     # type of authentication
     #nginx.ingress.kubernetes.io/auth-type: basic
     # name of the secret that contains the user/password definitions
