@@ -6,7 +6,8 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
     nginx.org/proxy-connect-timeout: "120s"
     nginx.org/proxy-read-timeout: "120s"
-    nginx.org/client-max-body-size: "40m"    
+    nginx.org/client-max-body-size: "40m"
+    cert-manager.io/cluster-issuer: "letsencrypt"
     # type of authentication
     #nginx.ingress.kubernetes.io/auth-type: basic
     # name of the secret that contains the user/password definitions

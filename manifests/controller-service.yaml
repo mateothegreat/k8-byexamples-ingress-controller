@@ -6,11 +6,15 @@ metadata:
 
   labels:
     app: ingress-controller
-
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags: "Name=mlfabric-dev-1-ingress"
 spec:
 
-  type: $SERVICE_TYPE
-  loadBalancerIP: $LOADBALANCER_IP
+  type: LoadBalancer
+  loadBalancerSourceRanges:
+    - 9.0.0.0/16
+#  loadBalancerIP: $LOADBALANCER_IP
   #externalTrafficPolicy: Local
   # type: ClusterIP
   ports:

@@ -11,7 +11,8 @@ NS      		?= default
 APP     		?= ingress-controller
 USERNAME        ?= user
 PASSWORD        ?= pass
-LOADBALANCER_IP	?=  
+LOADBALANCER_IP	?=
+LOADBALANCER_NAME   ?= mlfabric-dev-matthew-ingress-1
 SERVICE_TYPE	?= LoadBalancer
 export
 
@@ -32,11 +33,11 @@ install: guard-LOADBALANCER_IP
 htpasswd: secret-delete
 
 	test ! -f /usr/bin/htpasswd || echo "htpasswd does not exist!"
-	
+
 	# bcrypt is not supported within auth_basic, using md5
 	# docker run --rm appsoa/docker-alpine-htpasswd --entrypoint="htpasswd -b" $(USERNAME) $(PASSWORD) > auth
 	htpasswd -cb auth $(USERNAME) $(PASSWORD)
 
 	kubectl create secret generic nginx-ingress-basic-auth --from-file=auth
-	
+
 	@rm -rf auth
