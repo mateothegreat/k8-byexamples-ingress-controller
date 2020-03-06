@@ -35,6 +35,7 @@ rules:
 
   - apiGroups:
       - "extensions"
+      - "networking.k8s.io"
     resources:
       - ingresses
     verbs:
@@ -45,10 +46,10 @@ rules:
   - apiGroups:
       - ""
     resources:
-        - events
+      - events
     verbs:
-        - create
-        - patch
+      - create
+      - patch
 
   - apiGroups:
       - "extensions"
