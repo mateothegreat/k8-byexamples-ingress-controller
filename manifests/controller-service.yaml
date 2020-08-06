@@ -12,11 +12,7 @@ metadata:
 spec:
 
   type: LoadBalancer
-#  loadBalancerSourceRanges:
-#    - 9.0.0.0/16
-#  loadBalancerIP: $LOADBALANCER_IP
-  #externalTrafficPolicy: Local
-  # type: ClusterIP
+  loadBalancerIP: $LOADBALANCER_IP
   ports:
   - port:       80
     targetPort: 80
