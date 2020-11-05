@@ -5,4 +5,4 @@ metadata:
   labels:
     app: ingress-controller
 data:
-  1194: "test-1/sastoo-deploy-drupal:2222"
+  1194: "test-1/deploy-drupal:2222"
