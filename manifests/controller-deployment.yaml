@@ -1,19 +1,24 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ingress-controller
+  name: $APP
   labels:
-    app: ingress-controller
+    app: $APP
 spec:
-  replicas: 2
+  selector:
+    matchLabels:
+      app: $APP
+  replicas: 1
   template:
     metadata:
       labels:
-        app: ingress-controller
+        app: $APP
       annotations:
         prometheus.io/scrape: "true"
         promethus.io/port: "10254"
     spec:
+      #      nodeSelector:
+      #        role: services
       # hostNetwork makes it possible to use ipv6 and to preserve the source IP correctly regardless of docker configuration
       # however, it is not a hard dependency of the nginx-ingress-monitoring itself and it may cause issues if port 10254 already is taken on the host
       # that said, since hostPort is broken on CNI (https://github.com/kubernetes/kubernetes/issues/31307) we have to use hostNetwork where CNI is used
@@ -22,29 +27,31 @@ spec:
       #      nodeSelector:
       #        role: services
       serviceAccountName: nginx-ingress-serviceaccount
-      terminationGracePeriodSeconds: 60
+      terminationGracePeriodSeconds: 1
+      hostNetwork: true
+      nodeSelector:
+        role: services
       containers:
-        - name: ingress-controller
-          # image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.10.2
-          #        image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.26.1
-          image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.30.0
+        - name: $APP
+          image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.33.0
           readinessProbe:
             httpGet:
               path: /healthz
               port: 10254
               scheme: HTTP
+            initialDelaySeconds: 15
           livenessProbe:
             httpGet:
               path: /healthz
               port: 10254
               scheme: HTTP
-            initialDelaySeconds: 10
+            initialDelaySeconds: 15
             timeoutSeconds: 1
           ports:
             - containerPort: 80
               hostPort: 80
             - containerPort: 443
-              hostPort: 444
+              hostPort: 443
           env:
             - name: POD_NAME
               valueFrom:
@@ -59,6 +66,6 @@ spec:
             - --default-backend-service=$(POD_NAMESPACE)/default-http-backend
             # - --publish-service=$(POD_NAMESPACE)/ingress-controller
             - --configmap=$(POD_NAMESPACE)/nginx-configuration
-            #        - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
+            #            - --tcp-services-configmap=$(POD_NAMESPACE)/tcp-services
             #        - --udp-services-configmap=$(POD_NAMESPACE)/udp-services
             - --annotations-prefix=nginx.ingress.kubernetes.io

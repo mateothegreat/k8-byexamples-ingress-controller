@@ -1,8 +1,8 @@
-#kind: ConfigMap
-#apiVersion: v1
-#metadata:
-#  name: tcp-services
-#  labels:
-#    app: ingress-controller
-#data:
-#  1194: "default/openvpn:1194"
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: tcp-services
+  labels:
+    app: ingress-controller
+data:
+  1194: "test-1/sastoo-deploy-drupal:2222"

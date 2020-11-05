@@ -8,11 +8,12 @@ metadata:
   labels:
     app: ingress-controller
 data:
-  # proxy-connect-timeout: "10" # default is "60s". See http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout
-  # proxy-read-timeout: "10" # default is "60s". See http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout
+  proxy-connect-timeout: "600" # default is "60s". See http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_connect_timeout
+  proxy-read-timeout: "600" # default is "60s". See http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_read_timeout
   # proxy-hide-headers: "header-a,header-b" # No default. Sets the value of one or more proxy_hide_header directives. See http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header
   # proxy-pass-headers: "header-a,header-b" # No default. Sets the value of one or more proxy_pass_header directives. See http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header
   body-size: "1024m"
+  use-forwaded-headers: "true"
   proxy-body-size: "1024m"
   # client-max-body-size: "130m" # default is "1m". See http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
   # client-body-buffer-size: "140m" # default is "1m". See http://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size
@@ -71,3 +72,7 @@ data:
   # jaeger-service-name:      "True"                      # Specifies the service name to use for any traces created. Default: nginx
   # jaeger-sampler-type:      "True"                      # Specifies the sampler to be used when sampling traces. The available samplers are: const, probabilistic, ratelimiting, remote. Default const.
   # jaeger-sampler-param:     "True"                      # Specifies the argument to be passed to the sampler constructor. Must be a number. For const this should be 0 to never sample and 1 to always sample. Default: 1
+  use-gzip: "True"
+#  use-proxy-protocol: "True"
+#  use-forwarded-headers: "true"
+#  compute-full-forwarded-for: "true"

@@ -8,10 +8,10 @@
 include .make/Makefile.inc
 
 NS      		?= default
-APP     		?= ingress-controller
+APP     		?= ingress-controller-devops
 USERNAME        ?= user
 PASSWORD        ?= pass
-LOADBALANCER_IP	?=
+LOADBALANCER_IP	?= 0
 LOADBALANCER_NAME   ?= mlfabric-dev-matthew-ingress-1
 SERVICE_TYPE	?= LoadBalancer
 export
@@ -30,7 +30,7 @@ secret-delete:		; kubectl delete secret nginx-ingress-basic-auth | true
 
 install: guard-LOADBALANCER_IP
 
-htpasswd: secret-delete
+htpasswd:
 
 	test ! -f /usr/bin/htpasswd || echo "htpasswd does not exist!"
 
